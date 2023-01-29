@@ -9,22 +9,22 @@ const MealItemForm = ({id}) => {
     <StyledForm>
       <StyledInputContainer>
         <label htmlFor={id}>Amount</label>
-        <input type="number" id={id} min={1} max={5} defaultValue={1}/>
+        <input type="number" id={id} min={1} max={5} defaultValue={1} />
       </StyledInputContainer>
 
       <Button>
-        <StalyedIcon />
+        <IconPlus />
         Add
       </Button>
-    </StyledForm >
+    </StyledForm>
   );
 }
 
 export default MealItemForm
 
-const StalyedIcon = styled(IconPlus)`
-  margin-right: 10px;
-`;
+// const StalyedIcon = styled(IconPlus)`
+//   margin-right: 10px;
+// `;
 const StyledInputContainer = styled.div`
   display: flex;
   gap: 10px;

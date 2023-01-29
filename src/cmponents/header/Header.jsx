@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import BusketButton from './BasketButton'
 
-const Header = () => {
+const Header = ({openModal}) => {
   return (
     <Container>
       <Logo>ReactMeals</Logo>
-      <BusketButton> </BusketButton>
+      <BusketButton openModal={openModal}> </BusketButton>
     </Container>
   )
 }

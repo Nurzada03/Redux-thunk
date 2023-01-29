@@ -1,5 +1,4 @@
 import React from "react";
-
 import styled from "styled-components";
 import BackgroundImg from '../../assets/imgs/summary-background.jpg'
 import SummeryInfoCard from "./SummeryInfoCard";

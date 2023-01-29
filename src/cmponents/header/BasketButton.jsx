@@ -1,27 +1,16 @@
-
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as BasketIcon } from "../../assets/icons/Component 6/Busket-Item.svg";
 
-
-
-const BusketButton = ({count}) => {
+const BusketButton = ({ count,openModal }) => {
   return (
-    <StyledButton>
-      <BasketIcon></BasketIcon>
-      
-      <StyledTitle>Your cart 
-        
-        
-      </StyledTitle> 
-
-        <StyledCounter id="counter">
-          {count || 0}  
-        </StyledCounter>
+    <StyledButton onClick={openModal}>
+      <BasketIcon />
+      <span>Your cart</span>
+      <StyledCounter id="counter">{count || 0}</StyledCounter>
     </StyledButton>
   );
 };
-
 
 const StyledButton = styled.button`
   background-color: #5a1f08;
@@ -35,7 +24,7 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
-
+  gap: 10px;
   :hover {
     background-color: #2c0d00;
   }
@@ -47,19 +36,12 @@ const StyledButton = styled.button`
 
 export default BusketButton;
 
-
-const StyledTitle = styled.span`
-    margin-left: 12px ;
-    margin-right: 24px;
-`
-
 const StyledCounter = styled.span`
-
   background-color: #8a2b06;
-  border-radius:30px;
-  font-weight:700;
+  border-radius: 30px;
+  font-weight: 700;
   font-size: 20px;
-  line-height:27px; 
+  line-height: 27px;
   padding: 4px 20px;
-    color: #ffffff;
-`
+  color: #ffffff;
+`;

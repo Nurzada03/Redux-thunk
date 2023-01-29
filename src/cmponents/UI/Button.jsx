@@ -1,25 +1,56 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = ({children}) => {
-  return <StyledButton>{children}</StyledButton>;
+const Button = ({
+  children,
+  variant = "contained",
+  borderStyled = "rounded",
+  onClose
+}) => {
+  return (
+    <StyledButton onClick={onClose} variant={variant} borderStyle={borderStyled}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;
 
+const getBackgroundColor = (props) => {
+  return props.variant === "contained" ? "#8a2b06" : "#fffff";
+};
+
+const getBorder = (props) => {
+  return props.variant === "contained" ? "none" : "1px solid #8a2b06 ";
+};
+
+const getColor = (props) => {
+  return props.variant === "contained" ? "#fff" : " #8a2b06 ";
+};
+
+const getRadius = (props) => {
+  return props.borderStyle === "rounded" ? "20px" : " 6px ";
+};
+
 const StyledButton = styled.button`
-  background-color: #8a2b06;
+  background-color: ${getBackgroundColor};
   padding: 10px 32px;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  border-radius: 20px;
-  color: #ffffff;
-  border: none;
+  border-radius: ${getRadius};
+  color: ${getColor};
+  border: ${getBorder};
   cursor: pointer;
-
+  display: flex;
+  align-items: center;
+  gap: 10px;
   :hover {
+    color: white;
     background-color: #7e2a0a;
+    path {
+      stroke: white;
+    }
   }
   :active {
     background: #993108;
