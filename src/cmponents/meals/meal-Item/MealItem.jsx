@@ -1,9 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import MealItemForm from "./MealItemForm";
 
-
 const MealItem = ({ meal }) => {
+
   return (
     <Container>
       <StyledItem>
@@ -12,7 +11,7 @@ const MealItem = ({ meal }) => {
         <StyledPrice>${meal.price}</StyledPrice>
       </StyledItem>
       <div>
-        <MealItemForm id={meal.id} />
+        <MealItemForm id={meal._id} price={meal.price} title={meal.title} />
       </div>
     </Container>
   );
@@ -26,12 +25,11 @@ const Container = styled.li`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #d6d6d6;
-margin-bottom:20px;
+  margin-bottom: 20px;
 
-:last-child{
-border:none
-}
-
+  :last-child {
+    border: none;
+  }
 `;
 
 const StyledItem = styled.div`
@@ -44,15 +42,13 @@ const StyledItem = styled.div`
     line-height: 24px;
     margin: 0;
   }
-
 `;
-
 
 const StyledTitle = styled.h4`
   font-weight: 400px;
   font-size: 18x;
   line-height: 27px;
-  color:#222222;
+  color: #222222;
 `;
 
 const StyledPrice = styled.span`
@@ -70,7 +66,6 @@ const StyledDescription = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-
 
   color: #222222;
 `;

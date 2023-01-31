@@ -5,24 +5,26 @@ import Summery from "./cmponents/summery/Summery";
 import Meals from "./cmponents/meals/Meals";
 import Basket from "./cmponents/basket/Basket";
 import styled from "styled-components";
+import { BasketProvider } from "./store/BasketContext";
 
 function App() {
+  const [isModalVisible, setModalVisible] = useState(false);
 
-const [isModalVisible, setModalVisible] = useState(false);
-
-const addMealHandler = () => {
-  setModalVisible((prevState) => !prevState);
-};
+  const showBasketHandler = () => {
+    setModalVisible((prevState) => !prevState);
+  };
   return (
     <div>
-      <Header openModal={addMealHandler} />
+      <BasketProvider>
+        <Header openModal={showBasketHandler} />
 
-      <Content>
-        <Summery />
-        <Meals />
+        <Content>
+          <Summery />
+          <Meals />
 
-        {isModalVisible ? <Basket onClose={addMealHandler} /> : null}
-      </Content>
+          {isModalVisible ? <Basket onClose={showBasketHandler} /> : null}
+        </Content>
+      </BasketProvider>
     </div>
   );
 }
@@ -30,6 +32,20 @@ const addMealHandler = () => {
 export default App;
 
 const Content = styled.div`
-margin-top:101px;
+  margin-top: 101px;
+`;
 
-`
+// GET /foods
+// GET /basket
+// headers: {UserID: 'Nurzada'}/\
+
+// POST /foods/:foodId/addToBasket
+// headers: {UserID: 'Nurzada'}/\
+
+// BODY: { amount: number }
+// DELETE /basketItem/:id/delete
+// headers: {UserID: 'Nurzada'}/\
+
+// PUT /basketItem/:id/update
+// BODY: { amount: number }
+// */

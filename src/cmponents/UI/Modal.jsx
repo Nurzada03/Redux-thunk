@@ -1,5 +1,5 @@
 import React from "react";
-import {createPortal} from "react-dom";
+import { createPortal } from "react-dom";
 
 import styled from "styled-components";
 
@@ -14,7 +14,7 @@ const ModalContent = ({ children }) => {
 const backdropRoot = document.getElementById("backdrop");
 const modalOverlayRoot = document.getElementById("modal-overlay");
 
- const Modal = ({ children, onClose }) => {
+const Modal = ({ children, onClose }) => {
   return (
     <>
       {createPortal(<Backdrop onClose={onClose} />, backdropRoot)}
@@ -58,5 +58,4 @@ const StyledModalContent = styled.div`
   }
 `;
 
-
-export default Modal
+export default Modal;

@@ -1,54 +1,51 @@
-import React from 'react' 
+import React, { useEffect, useState } from "react";
 
-import styled from 'styled-components';
-import MealItem from './meal-Item/MealItem';
-
-const DUMMY_MEALS = [
-  {
-    id:'1',
-    title: "Sushi",
-    description: "Finest fish and veggies",
-    price: 22.99,
-  },
-  {
-    id:'2',
-    title: "Schnitzel",
-    description: "A german specialty! ",
-    price: 12.99,
-  },
-  {
-    id: '3',
-    title: "Barbecue Burger",
-    description: "American, raw, meaty ",
-    price: 12.99,
-  },
-
-  {
-    id: '4',
-    title: "Green Bowl",
-    description: "Healthy...and green... ",
-    price: 19.99,
-  },
-];
+import styled from "styled-components";
+import { fetchApi } from "../../lib/fetchApi";
+import MealItem from "./meal-Item/MealItem";
 
 
 const Meals = () => {
-  return <>
-    <Card>
-      {DUMMY_MEALS.map((meal) => {
-    return <MealItem key={meal.id} meal={meal}/>
-  })}
-    </Card>
-    </>;
-}
+  const [meals, setMeals] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(true);
 
-export default Meals
+  const getMeals = async () => {
+    try {
+      setLoading(true);
 
+      const response = await fetchApi("foods");
+      setMeals(response.data);
+
+      setLoading(false);
+    } catch (error) {
+      setError("Failed to load meals");
+    }
+  };
+
+  useEffect(() => {
+    getMeals();
+  }, []);
+
+  return (
+    <>
+      <Card>
+        {isLoading && !error && <p>Loading..</p>}
+
+        {meals.map((meal) => {
+          return <MealItem key={meal._id} meal={meal} id={meal._id} />;
+        })}
+      </Card>
+    </>
+  );
+};
+
+export default Meals;
 
 const Card = styled.div`
   background: #ffffff;
   border-radius: 16px;
   width: 75%;
   margin: 40px auto;
-  padding:40px 40px 10px 40px;
+  padding: 40px 40px 10px 40px;
 `;

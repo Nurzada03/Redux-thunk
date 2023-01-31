@@ -5,10 +5,16 @@ const Button = ({
   children,
   variant = "contained",
   borderStyled = "rounded",
-  onClose
+  onClose,
+  ...props
 }) => {
   return (
-    <StyledButton onClick={onClose} variant={variant} borderStyle={borderStyled}>
+    <StyledButton
+      onClick={onClose}
+      variant={variant}
+      borderStyle={borderStyled}
+      {...props}
+    >
       {children}
     </StyledButton>
   );

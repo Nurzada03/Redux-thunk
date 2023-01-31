@@ -1,11 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const SummeryInfoCard = () => {
   return (
     <Card>
       <StyledTitle>Delicious food, delivered to you</StyledTitle>
-      <StyledText  >
+      <StyledText>
         Choose your favorite meal from our broad selection of available meals
         and enjoy a delicious lunch or dinner at home.
       </StyledText>
@@ -15,9 +15,9 @@ const SummeryInfoCard = () => {
       </StyledTextSecond>
     </Card>
   );
-}
+};
 
-export default SummeryInfoCard
+export default SummeryInfoCard;
 
 const Card = styled.div`
   max-width: 53.375rem;
@@ -32,15 +32,12 @@ const Card = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-
 `;
 
-
 const StyledTitle = styled.h1`
-  font-weight:400;
+  font-weight: 400;
   font-size: 36px;
   line-height: 54px;
-
 `;
 
 const StyledText = styled.p`
