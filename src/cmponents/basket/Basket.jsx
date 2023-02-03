@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import styled from "styled-components";
 import { BasketContext } from "../../store/BasketContext";
 
@@ -10,9 +10,9 @@ const Basket = ({ onClose }) => {
   const { items, updateBasketItem, deleteBasketItem } =
     useContext(BasketContext);
 
-  const getTotalPrice = () => {
+  const getTotalPrice = useCallback(() => {
     return items.reduce((sum, { price, amount }) => sum + amount * price, 0);
-  };
+  },[items]);
 
   const decrementAmount = (id, amount) => {
     if (amount > 1) {

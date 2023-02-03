@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import BackgroundImg from "../../assets/imgs/summary-background.jpg";
 import SummeryInfoCard from "./SummeryInfoCard";
@@ -11,7 +11,7 @@ const Summery = () => {
   );
 };
 
-export default Summery;
+export default memo(Summery);
 
 const Container = styled.div`
   height: 527px;

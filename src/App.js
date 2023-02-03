@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import React from "react";
 import Header from "./cmponents/header/Header";
 import Summery from "./cmponents/summery/Summery";
@@ -10,9 +10,9 @@ import { BasketProvider } from "./store/BasketContext";
 function App() {
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const showBasketHandler = () => {
+  const showBasketHandler = useCallback(() => {
     setModalVisible((prevState) => !prevState);
-  };
+  },[]);
   return (
     <div>
       <BasketProvider>

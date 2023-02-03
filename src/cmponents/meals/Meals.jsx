@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 import styled from "styled-components";
 import { fetchApi } from "../../lib/fetchApi";
@@ -40,7 +40,7 @@ const Meals = () => {
   );
 };
 
-export default Meals;
+export default memo(Meals);
 
 const Card = styled.div`
   background: #ffffff;
