@@ -5,17 +5,18 @@ import Summery from "./cmponents/summery/Summery";
 import Meals from "./cmponents/meals/Meals";
 import Basket from "./cmponents/basket/Basket";
 import styled from "styled-components";
-import { BasketProvider } from "./store/BasketContext";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
-function App() {
+function AppContent() {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const showBasketHandler = useCallback(() => {
     setModalVisible((prevState) => !prevState);
-  },[]);
+  }, []);
   return (
     <div>
-      <BasketProvider>
+      <Provider store={store}>
         <Header openModal={showBasketHandler} />
 
         <Content>
@@ -24,11 +25,18 @@ function App() {
 
           {isModalVisible ? <Basket onClose={showBasketHandler} /> : null}
         </Content>
-      </BasketProvider>
+      </Provider>
     </div>
   );
 }
 
+const App = () => {
+  return (
+    <Provider store={store}>
+      <AppContent />
+    </Provider>
+  );
+};
 export default App;
 
 const Content = styled.div`

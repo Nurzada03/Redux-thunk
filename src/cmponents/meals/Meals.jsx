@@ -1,31 +1,18 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect,  } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
-import { fetchApi } from "../../lib/fetchApi";
+import { getMeals } from "../../store/meals/mealsReduser";
 import MealItem from "./meal-Item/MealItem";
 
-
 const Meals = () => {
-  const [meals, setMeals] = useState([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
-  const getMeals = async () => {
-    try {
-      setLoading(true);
-
-      const response = await fetchApi("foods");
-      setMeals(response.data);
-
-      setLoading(false);
-    } catch (error) {
-      setError("Failed to load meals");
-    }
-  };
+  const { meals, isLoading, error } = useSelector((state) => state.meals);
 
   useEffect(() => {
-    getMeals();
-  }, []);
+    dispatch(getMeals());
+  }, [dispatch]);
 
   return (
     <>

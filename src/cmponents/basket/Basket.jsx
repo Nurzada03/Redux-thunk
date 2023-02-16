@@ -1,14 +1,15 @@
-import { useCallback, useContext } from "react";
+import { useCallback} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { BasketContext } from "../../store/BasketContext";
+import { deleteBasket, updateBasket } from "../../store/basket/basketReduser";
 
 import Modal from "../UI/Modal";
 import BasketItem from "./BasketItem";
 import TotalAmount from "./TotalAmount";
 
 const Basket = ({ onClose }) => {
-  const { items, updateBasketItem, deleteBasketItem } =
-    useContext(BasketContext);
+  const dispatch = useDispatch()
+  const  items = useSelector(state => state.basket.items)
 
   const getTotalPrice = useCallback(() => {
     return items.reduce((sum, { price, amount }) => sum + amount * price, 0);
@@ -16,14 +17,14 @@ const Basket = ({ onClose }) => {
 
   const decrementAmount = (id, amount) => {
     if (amount > 1) {
-      updateBasketItem({ amount: amount - 1, id });
+     dispatch( updateBasket({ amount: amount - 1, id }));
     } else {
-      deleteBasketItem(id);
+    dispatch(deleteBasket(id))  ;
     }
   };
 
   const incrementAmount = (id, amount) => {
-    updateBasketItem({ amount: amount + 1, id });
+  dispatch(updateBasket({ amount: amount + 1, id }))  ;
   };
 
   return (

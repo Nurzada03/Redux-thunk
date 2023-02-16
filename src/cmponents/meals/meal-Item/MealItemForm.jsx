@@ -1,20 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { ReactComponent as IconPlus } from "../../../assets/icons/Vector.svg";
-import { BasketContext } from "../../../store/BasketContext";
 import styled from "styled-components";
 import Button from "../../UI/Button";
+import { addToBasket } from "../../../store/basket/basketReduser";
+import { useDispatch } from "react-redux";
 
 const MealItemForm = ({ id, title, price }) => {
-  const { addToBasket } = useContext(BasketContext);
+  const dispatch = useDispatch();
 
   const [amount, setAmount] = useState(1);
 
   const amountChangeHandler = (e) => {
-    setAmount(+e.target.value);
+    setAmount(e.target.value);
   };
 
   const submitHandler = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     const basketItem = {
       id,
@@ -23,32 +24,30 @@ const MealItemForm = ({ id, title, price }) => {
       amount,
     };
 
-    addToBasket(basketItem);
+    dispatch(addToBasket(basketItem));
   };
 
+  return (
+    <StyledForm onSubmit={submitHandler}>
+      <StyledInputContainer>
+        <label htmlFor={id}>Amount</label>
+        <input
+          value={amount}
+          onChange={amountChangeHandler}
+          type="number"
+          id={id}
+          min={1}
+          max={5}
+        />
+      </StyledInputContainer>
 
-return (
-  <StyledForm onSubmit={submitHandler}>
-    <StyledInputContainer>
-      <label htmlFor={id}>Amount</label>
-      <input
-        value={amount}
-        onChange={amountChangeHandler}
-        type="number"
-        id={id}
-        min={1}
-        max={5}
-        // defaultValue={1}
-      />
-    </StyledInputContainer>
-
-    <Button>
-      <IconPlus />
-      Add
-    </Button>
-  </StyledForm>
-);
-}
+      <Button>
+        <IconPlus />
+        Add
+      </Button>
+    </StyledForm>
+  );
+};
 export default MealItemForm;
 
 // const StalyedIcon = styled(IconPlus)`
